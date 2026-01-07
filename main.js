@@ -1,12 +1,12 @@
 // dom elem
 const formElem = document.querySelector('.form-container');
 
-const firstName = formElem.querySelector('#first-name')
-const lastName = formElem.querySelector('#last-name')
-const email = formElem.querySelector('#email')
-const querries = formElem.querySelectorAll('.query')
-const message = formElem.querySelector('#message')
-const checkBox = formElem.querySelector('#checkbox')
+const firstNameElem = formElem.querySelector('#first-name')
+const lastNameElem = formElem.querySelector('#last-name')
+const emailElem = formElem.querySelector('#email')
+const querriesElem = formElem.querySelectorAll('.query')
+const messageElem = formElem.querySelector('#message')
+const checkBoxElem = formElem.querySelector('#checkbox')
 
 
 
@@ -14,14 +14,26 @@ formElem.addEventListener('submit', function(e){
     e.preventDefault();
     console.log('submitted');
 
-    // let firstname = validateName(firstName.value)
-    // let lastName = validateName(lastName.value)
-    // let email = validateEmail(email.value)
-    // let message = validateMessage(message.value)
-    // let query = validateQuery(querries)
+    let firstname = validateName(firstNameElem.value)
+    let lastname = validateName(lastNameElem.value)
+    let email = validateEmail(emailElem.value)
+    let message = validateMessage(messageElem.value)
+    let query = validateQuery(querriesElem)
+    let checkbox = validateCheckbox(checkBoxElem)
 
-    validateQuery(querries)
-    validateCheckbox(checkBox)
+    if(firstname && lastname && email && message && query && checkbox){
+        const userInfo = {
+            name: `${firstname} ${lastname}`,
+            email: email,
+            query: query,
+            message:message,
+        };
+
+        console.log(userInfo)
+    }else{
+        console.log('error', firstname, email, message, query, checkbox)
+        return
+    }
 })
 
 
@@ -54,7 +66,7 @@ function validateEmail(email){
         // error message on display
     } else {
         console.log(email)
-        //return email;
+        return email;
     }
 }
 
@@ -71,19 +83,21 @@ function validateMessage(msg){
 
 // query validation
 function validateQuery(querries){
-    querries.forEach(radio => {
-        if(radio.checked){
-            return radio.value;
-        }
-    });
+    const checkedRadio = [...querries].filter((radio) => {
+        return radio.checked;
+    })
+    console.log(checkedRadio)
+    if(checkedRadio[0]){
+        return checkedRadio[0].value
+    }else{
+        return false
+    }
 }
 
-validateQuery(querries)
 
 // checkbox validation
 function validateCheckbox(checkbox){
     if(checkbox.checked){
-        console.log(true)
         return true;
     }else{
         return false;
