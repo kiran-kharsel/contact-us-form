@@ -4,7 +4,7 @@ const formElem = document.querySelector('.form-container');
 const firstName = formElem.querySelector('#first-name')
 const lastName = formElem.querySelector('#last-name')
 const email = formElem.querySelector('#email')
-const queries = formElem.querySelectorAll('.query')
+const querries = formElem.querySelectorAll('.query')
 const message = formElem.querySelector('#message')
 const checkBox = formElem.querySelector('#checkbox')
 
@@ -12,7 +12,16 @@ const checkBox = formElem.querySelector('#checkbox')
 
 formElem.addEventListener('submit', function(e){
     e.preventDefault();
-    console.log('submitted')
+    console.log('submitted');
+
+    // let firstname = validateName(firstName.value)
+    // let lastName = validateName(lastName.value)
+    // let email = validateEmail(email.value)
+    // let message = validateMessage(message.value)
+    // let query = validateQuery(querries)
+
+    validateQuery(querries)
+    validateCheckbox(checkBox)
 })
 
 
@@ -49,4 +58,34 @@ function validateEmail(email){
     }
 }
 
-validateEmail('can-3@gmail.com')
+
+// message validation
+function validateMessage(msg){
+    if(msg.length === 0){
+        console.log('error, meage cant be empty')
+    }
+
+    return msg
+}
+
+
+// query validation
+function validateQuery(querries){
+    querries.forEach(radio => {
+        if(radio.checked){
+            return radio.value;
+        }
+    });
+}
+
+validateQuery(querries)
+
+// checkbox validation
+function validateCheckbox(checkbox){
+    if(checkbox.checked){
+        console.log(true)
+        return true;
+    }else{
+        return false;
+    }
+}
