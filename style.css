@@ -40,6 +40,12 @@ input[type="checkbox"], input[type="radio"]{
     transform: scale(1.1);
 }
 
+.error{
+    color: tomato;
+    font-size: 0.8rem;
+    height: 20px;
+}
+
 
 
 .form-container{
@@ -60,7 +66,6 @@ input[type="checkbox"], input[type="radio"]{
 }
 
 .form-container .name-input{
-    /* background-color: green; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -69,6 +74,7 @@ input[type="checkbox"], input[type="radio"]{
 
 .name-input div{
     width: 48%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -137,6 +143,8 @@ input[type="checkbox"], input[type="radio"]{
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+    margin-bottom: 30px;
 }
 
 .form-container .submit{
@@ -149,4 +157,10 @@ input[type="checkbox"], input[type="radio"]{
     font-size: 1.2rem;
     padding: 10px 0px;
     color: white;
+}
+
+.form-container .checkbox-input .error{
+    position: absolute;
+    top: 24px;
+    left: 0;
 }
