@@ -46,6 +46,8 @@ formElem.addEventListener('submit', function(e){
 
 // validation fn for name
 function validateName(name, elem){
+    // reset error msg
+    setError(elem, '');
     // This regex allows uppercase and lowercase letters, spaces, hyphens, and apostrophes
     let pattern = /^[a-zA-Z\s'-]+$/;
 
@@ -65,6 +67,8 @@ function validateName(name, elem){
 
 // validation fn for email
 function validateEmail(email, elem){
+    setError(elem, '');
+
     let pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(email.length === 0){
@@ -76,7 +80,6 @@ function validateEmail(email, elem){
         setError(elem, 'email contains invalid characters.')
         return
     } else {
-        console.log(email)
         return email;
     }
 }
@@ -84,6 +87,8 @@ function validateEmail(email, elem){
 
 // message validation
 function validateMessage(msg, elem){
+    setError(elem, '');
+
     if(msg.length === 0){
         setError(elem, 'message is required')
         return
@@ -95,10 +100,12 @@ function validateMessage(msg, elem){
 
 // query validation
 function validateQuery(querries){
+    setError(document.querySelector('.query-input div'), ''); 
+
     const checkedRadio = [...querries].filter((radio) => {
         return radio.checked;
     });
-    
+
     if(checkedRadio[0]){
         return checkedRadio[0].value
     }else{
@@ -110,6 +117,8 @@ function validateQuery(querries){
 
 // checkbox validation
 function validateCheckbox(checkbox){
+    setError(checkbox, '')
+
     if(checkbox.checked){
         return true;
     }else{
