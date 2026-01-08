@@ -35,13 +35,16 @@ formElem.addEventListener('submit', function(e){
             query: query,
             message:message,
         };
+
+        // reset form
         formElem.reset();
 
         console.log(userInfo)
 
         //return userInfo;
+        
     }else{
-        // console.log('error', firstname, email, message, query, checkbox)
+        // error message
         return
     }
 });
