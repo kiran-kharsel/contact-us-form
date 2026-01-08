@@ -17,16 +17,19 @@
             <div>
                 <label for="first-name">first name <span>*</span></label>
                 <input type="text" id="first-name">
+                <p class="error"></p>
             </div>
             <div>
                 <label for="last-name">last name <span>*</span></label>
                 <input type="text" id="last-name">
+                <p class="error"></p>
             </div>
         </div>
 
         <div class="email-input">
             <label for="email">email address <span>*</span></label>
             <input type="email" id="email">
+            <p class="error"></p>
         </div>
 
         <div class="query-input">
@@ -41,17 +44,20 @@
                     <input class="query" type="radio" id="support-query" name="query" value="support-requet">
                 </div>
             </div>
+            <p class="error"></p>
 
         </div>
 
         <div class="message-input">
             <label for="message">message <span>*</span></label>
             <textarea name="message" id="message"></textarea>
+            <p class="error"></p>
         </div>
 
         <div class="checkbox-input">
             <input type="checkbox" id="checkbox">
             <label for="checkbox">i consent to being contacted by the team <span>*</span></label>
+            <p class="error"></p>
         </div>
 
         <button class="submit" type="submit">Submit</button>
