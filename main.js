@@ -19,12 +19,12 @@ function setError(elem, msg){
 
 formElem.addEventListener('submit', function(e){
     e.preventDefault();
-    console.log('submitted');
 
-    let firstname = validateName(firstNameElem.value)
-    let lastname = validateName(lastNameElem.value)
-    let email = validateEmail(emailElem.value)
-    let message = validateMessage(messageElem.value)
+
+    let firstname = validateName(firstNameElem.value, firstNameElem)
+    let lastname = validateName(lastNameElem.value, lastNameElem)
+    let email = validateEmail(emailElem.value, emailElem)
+    let message = validateMessage(messageElem.value, messageElem)
     let query = validateQuery(querriesElem)
     let checkbox = validateCheckbox(checkBoxElem)
 
@@ -38,23 +38,25 @@ formElem.addEventListener('submit', function(e){
 
         console.log(userInfo)
     }else{
-        console.log('error', firstname, email, message, query, checkbox)
+        // console.log('error', firstname, email, message, query, checkbox)
         return
     }
-})
+});
 
 
 // validation fn for name
-function validateName(name){
+function validateName(name, elem){
     // This regex allows uppercase and lowercase letters, spaces, hyphens, and apostrophes
     let pattern = /^[a-zA-Z\s'-]+$/;
 
     if(name.length === 0){
-        console.log('name is required');
         // error message on display
+        setError(elem, 'name is required');
+        return
     }else if(!pattern.test(name)){
-        console.log('Name contains invalid characters.');
         // error message on display
+        setError(elem, 'Name contains invalid characters.')
+        return
     } else {
         return name;
     }
@@ -62,15 +64,17 @@ function validateName(name){
 
 
 // validation fn for email
-function validateEmail(email){
+function validateEmail(email, elem){
     let pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(email.length === 0){
-        console.log('email is required');
         // error message on display
+        setError(elem, 'email is required')
+        return
     }else if(!pattern.test(email)){
-        console.log('email contains invalid characters.');
         // error message on display
+        setError(elem, 'email contains invalid characters.')
+        return
     } else {
         console.log(email)
         return email;
@@ -79,10 +83,11 @@ function validateEmail(email){
 
 
 // message validation
-function validateMessage(msg){
+function validateMessage(msg, elem){
     if(msg.length === 0){
-        console.log('error, meage cant be empty')
-    }
+        setError(elem, 'message is required')
+        return
+    };
 
     return msg
 }
@@ -92,11 +97,12 @@ function validateMessage(msg){
 function validateQuery(querries){
     const checkedRadio = [...querries].filter((radio) => {
         return radio.checked;
-    })
-    console.log(checkedRadio)
+    });
+    
     if(checkedRadio[0]){
         return checkedRadio[0].value
     }else{
+        setError(document.querySelector('.query-input div'), 'query fields is required')
         return false
     }
 }
@@ -107,6 +113,7 @@ function validateCheckbox(checkbox){
     if(checkbox.checked){
         return true;
     }else{
+        setError(checkbox, 'term and condition is required.')
         return false;
     }
 }
