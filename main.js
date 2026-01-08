@@ -10,6 +10,13 @@ const checkBoxElem = formElem.querySelector('#checkbox')
 
 
 
+// set error
+function setError(elem, msg){
+    const inputControl = elem.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = msg
+}
+
 formElem.addEventListener('submit', function(e){
     e.preventDefault();
     console.log('submitted');
